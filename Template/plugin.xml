@@ -208,20 +208,7 @@
     <generator moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
                class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
     <parameter name="variantAware" value="true"/>
-    <!-- swcd modes and template path parameters -->
-    <parameter name="mode_type" mode="generate_swcd" value="generate"></parameter>
-    <parameter name="mode_type" mode="verify_swcd" value="verify"></parameter>
-    <parameter name="templates" mode="generate_swcd,verify_swcd" value="generate_swcd"></parameter>
-
-      <!-- common template path parameters -->
       <parameter name="templates" mode="generate,verify" value="generate,generate_PC,generate_PB"/>
-      <!-- custom generators -->
-      <parameter name="templates" mode="generate_PC" value="generate_PC"/>
-      <parameter name="templates" mode="generate_PB" value="generate_PB"/>
-      <!-- custom template paths -->
-      <parameter name="mode_type" mode="generate_PC" value="generate"/>
-      <parameter name="mode_type" mode="generate_PB" value="generate"/>
-
     </generator>
   </extension>
 
@@ -232,20 +219,7 @@
     <generator moduleId="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
                class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
     <parameter name="variantAware" value="true"/>
-    <!-- swcd modes and template path parameters -->
-    <parameter name="mode_type" mode="generate_swcd" value="generate"></parameter>
-    <parameter name="mode_type" mode="verify_swcd" value="verify"></parameter>
-    <parameter name="templates" mode="generate_swcd,verify_swcd" value="generate_swcd"></parameter>
-
-      <!-- common template path parameters -->
       <parameter name="templates" mode="generate,verify" value="generate,generate_PC,generate_PB"/>
-      <!-- custom generators -->
-      <parameter name="templates" mode="generate_PC" value="generate_PC"/>
-      <parameter name="templates" mode="generate_PB" value="generate_PB"/>
-      <!-- custom template paths -->
-      <parameter name="mode_type" mode="generate_PC" value="generate"/>
-      <parameter name="mode_type" mode="generate_PB" value="generate"/>
-
     </generator>
 </extension>
 #ENDIF
@@ -274,7 +248,6 @@
   <extension point="org.eclipse.help.toc">
     <toc file="anchors.xml" primary="true"/>
     <toc file="$nl$/#M4_MODULE_NAME#/toc.xml" primary="false"/>
-    <!-- toc file="$nl$/ReleaseNotes/toc.xml" primary="false"/ !-->
   </extension>
 </plugin>
 
