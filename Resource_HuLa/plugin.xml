@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<plugin>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.module"
+             id="Resource_HuLa_ModuleId"
+             name="Resource_HuLa Module">
+
+    <module id="Resource_HuLa"
+            label="Resource"
+            mandatory="false"
+            allowMultiple="false"
+            description="Resource BSW module"
+            copyright="Copyright 2022 HuLaGroup SEMICONDUCTOR"
+            swVersionMajor="1"
+            swVersionMinor="0"
+            swVersionPatch="0"
+            swVersionSuffix="RTM"
+            specVersionMajor=""
+            specVersionMinor=""
+            specVersionPatch=""
+            specVersionSuffix=""
+            relVersionPrefix="AUTOSAR"
+            relVersionMajor="4"
+            relVersionMinor="4"
+            relVersionPatch="0"
+            relVersionSuffix=""
+            categoryType="Resource"
+            categoryLayer="MCAL"
+            categoryCategory="ECU Firmware"
+            categoryComponent="ECUC">
+      <ecuType target="CortexM4" derivate="HuLa"/>
+
+    </module>
+  </extension>
+
+    <extension point="dreisoft.tresos.launcher2.plugin.configuration"
+             id="Resource_HuLa_ConfigId"
+             name="Resource_HuLa Configuration">
+    <configuration moduleId="Resource_HuLa">
+      <schema>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarSchemaManager"/>
+        <resource value="config/Resource.xdm" type="xdm"/>
+      </schema>
+
+      <data>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarConfigManager"/>
+        <schemaNode path="ASPath:/HuLa/Resource"/>
+      </data>
+
+      <editor id="Resource_HuLa_EditorId"
+              label="Default"
+              tooltip="Resource BSW module">
+        <class class="dreisoft.tresos.launcher2.editor.GenericConfigEditor">
+          <parameter name="schema" value="ASPath:/HuLa/Resource"/>
+          <parameter name="title" value="Resource"/>
+          <parameter name="noTabs" value="false"/>
+          <parameter name="noLinks" value="true"/>
+          <parameter name="groupLinks" value="false"/>
+          <parameter name="groupContainers" value="false"/>
+          <parameter name="groupTables" value="true"/>
+          <parameter name="optionalGeneralTab" value="true"/>
+        </class>
+      </editor>
+    </configuration>
+  </extension>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.generator"
+             id="EPCGenerator"
+             name="EPC Generator">
+  <generator moduleId="Resource_HuLa"
+               id="Resource_HuLa"
+               class="dreisoft.tresos.autosar2.generator.EPCFileGenerator">
+
+  <parameter name="variantAware" value="true"/>
+  <parameter name="cfgFilePath" value="output"/>
+  <parameter name="generateAllModules" value="false"/>
+  <parameter name="generateIntoOneFile" value="false"/>
+  <parameter name="contentType" value="asc:4.4.0"/>
+  </generator>
+ </extension>
+
+ <extension point="dreisoft.tresos.generator.api.plugin.generator" id="Resource_HuLa_NGGeneratorId">
+          <generator moduleId="Resource_HuLa"
+                     class="dreisoft.tresos.generator.ng.api.NGGenerator"
+                     id="Resource_HuLa_UniqueNGGeneratorId"
+                     modes="generate,generate_PC,generate_PB,verify"
+                     step="post">
+              <parameter name="buildfile" value="ant_generator.xml"/>
+           <parameter name="variantAware" value="true"/>
+          </generator>
+  </extension>
+
+  <extension point="dreisoft.tresos.launcher2.plugin.generator"
+              id="Resource_HuLa_GeneratorId"
+              name="Resource_HuLa Generator">
+    <generator moduleId="Resource_HuLa"
+               class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
+    <parameter name="variantAware" value="true"/>
+      <parameter name="templates" mode="generate,verify" value="generate,generate_PC,generate_PB"/>
+
+    </generator>
+  </extension>
+  <extension point="dreisoft.tresos.autosar2.api.plugin.ecuresource">
+    <ecuresource
+      target="CortexM4"
+      derivate="HuLa"
+      moduleId="Resource_HuLa"
+      file="resource/hula_01.properties">
+      <parameter name="subderivative" value="hula_01"/>
+    </ecuresource>
+  </extension>
+
+  <extension point="dreisoft.tresos.autosar2.api.plugin.ecuresourcefinder">
+    <ecuresourcefinder>
+      <finder class="dreisoft.tresos.autosar2.api.ecuresource.DefaultEcuResourceFinder">
+        <parameter name="name" value="subderivative"/>
+        <parameter name="path" value="ASPath:/HuLa/Resource/ResourceGeneralContainer/ResourcePackage"/>
+      </finder>
+    </ecuresourcefinder>
+  </extension>
+
+  <extension point="org.eclipse.help.toc">
+    <toc file="anchors.xml" primary="true"/>
+    <toc file="$nl$/Resource/toc.xml" primary="false"/>
+  </extension>
+</plugin>
+

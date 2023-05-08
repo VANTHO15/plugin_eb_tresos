@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<plugin>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.module"
+             id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_ModuleId"
+             name="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME# Module">
+
+    <module id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+            label="#M4_MODULE_NAME#"
+            mandatory="#M4_MANDATORY#"
+            allowMultiple="false"
+            description="#M4_MODULE_NAME# BSW module"
+            copyright="#M4_COPYRIGHT#"
+            swVersionMajor="#M4_SW_VERSION_MAJOR#"
+            swVersionMinor="#M4_SW_VERSION_MINOR#"
+            swVersionPatch="#M4_SW_VERSION_PATCH#"
+            swVersionSuffix="#M4_RELEASE_TYPE#"
+            specVersionMajor=""
+            specVersionMinor=""
+            specVersionPatch=""
+            specVersionSuffix=""
+            relVersionPrefix="AUTOSAR"
+            relVersionMajor="#M4_AUTOSAR_RELEASE_VERSION_MAJOR#"
+            relVersionMinor="#M4_AUTOSAR_RELEASE_VERSION_MINOR#"
+            relVersionPatch="#M4_AUTOSAR_RELEASE_VERSION_PATCH#"
+            relVersionSuffix=""
+            categoryType="#M4_MODULE_NAME#"
+            categoryLayer="MCAL"
+            categoryCategory="ECU Firmware"
+            categoryComponent="ECUC">
+      <ecuType target="#M4_TARGET_ARCHITECTURE#" derivate="#M4_HW_SILICON_NAME#"/>
+
+    </module>
+  </extension>
+
+#IF (#M4_SUPPORT_MULTI_INSTANCE#==1)
+<extension point="dreisoft.tresos.launcher2.plugin.module"
+             id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_ModuleId"
+             name="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME# Module">
+
+    <module id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
+            label="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#"
+            mandatory="false"
+            allowMultiple="false"
+            description="#M4_MODULE_NAME# BSW module"
+            copyright="#M4_COPYRIGHT#"
+            swVersionMajor="#M4_SW_VERSION_MAJOR#"
+            swVersionMinor="#M4_SW_VERSION_MINOR#"
+            swVersionPatch="#M4_SW_VERSION_PATCH#"
+            swVersionSuffix="#M4_RELEASE_TYPE#"
+            specVersionMajor=""
+            specVersionMinor=""
+            specVersionPatch=""
+            specVersionSuffix=""
+            relVersionPrefix="AUTOSAR"
+            relVersionMajor="#M4_AUTOSAR_RELEASE_VERSION_MAJOR#"
+            relVersionMinor="#M4_AUTOSAR_RELEASE_VERSION_MINOR#"
+            relVersionPatch="#M4_AUTOSAR_RELEASE_VERSION_PATCH#"
+            relVersionSuffix=""
+            categoryType="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#"
+            categoryLayer="MCAL"
+            categoryCategory="ECU Firmware"
+            categoryComponent="ECUC">
+      <ecuType target="#M4_TARGET_ARCHITECTURE#" derivate="#M4_HW_SILICON_NAME#"/>
+
+    </module>
+</extension>
+#ENDIF
+
+    <extension point="dreisoft.tresos.launcher2.plugin.configuration"
+             id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_ConfigId"
+             name="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME# Configuration">
+    <configuration moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#">
+      <schema>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarSchemaManager"/>
+        <resource value="config/#M4_MODULE_NAME#.xdm" type="xdm"/>
+      </schema>
+
+      <data>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarConfigManager"/>
+        <schemaNode path="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#"/>
+      </data>
+
+      <editor id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_EditorId"
+              label="Default"
+              tooltip="#M4_MODULE_NAME# BSW module">
+        <class class="dreisoft.tresos.launcher2.editor.GenericConfigEditor">
+          <parameter name="schema" value="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#"/>
+          <parameter name="title" value="#M4_MODULE_NAME#"/>
+          <parameter name="noTabs" value="false"/>
+          <parameter name="noLinks" value="true"/>
+          <parameter name="groupLinks" value="false"/>
+          <parameter name="groupContainers" value="false"/>
+          <parameter name="groupTables" value="true"/>
+          <parameter name="optionalGeneralTab" value="true"/>
+        </class>
+      </editor>
+    </configuration>
+  </extension>
+
+#IF (#M4_SUPPORT_MULTI_INSTANCE#==1)
+<extension point="dreisoft.tresos.launcher2.plugin.configuration"
+             id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_ConfigId"
+             name="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME# Configuration">
+    <configuration moduleId="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#">
+      <schema>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarSchemaManager"/>
+        <resource value="config/#M4_MODULE_NAME#.xdm" type="xdm"/>
+      </schema>
+
+      <data>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarConfigManager"/>
+        <schemaNode path="ASPath:/#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#"/>
+      </data>
+
+      <editor id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_EditorId"
+              label="Default"
+              tooltip="#M4_MODULE_NAME# BSW module">
+        <class class="dreisoft.tresos.launcher2.editor.GenericConfigEditor">
+          <parameter name="schema" value="ASPath:/#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#"/>
+          <parameter name="title" value="#M4_MODULE_NAME#"/>
+          <parameter name="noTabs" value="false"/>
+          <parameter name="noLinks" value="true"/>
+          <parameter name="groupLinks" value="false"/>
+          <parameter name="groupContainers" value="false"/>
+          <parameter name="groupTables" value="true"/>
+          <parameter name="optionalGeneralTab" value="true"/>
+        </class>
+      </editor>
+    </configuration>
+</extension>
+#ENDIF
+
+ <extension point="dreisoft.tresos.launcher2.plugin.generator"
+             id="EPCGenerator"
+             name="EPC Generator">
+  <generator moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+               id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+               class="dreisoft.tresos.autosar2.generator.EPCFileGenerator">
+
+  <parameter name="variantAware" value="true"/>
+  <parameter name="cfgFilePath" value="output"/>
+  <parameter name="generateAllModules" value="false"/>
+  <parameter name="generateIntoOneFile" value="false"/>
+  <parameter name="contentType" value="asc:#M4_ASC_AUTOSAR_VERSION#"/>
+  </generator>
+ </extension>
+
+#IF (#M4_SUPPORT_MULTI_INSTANCE#==1)
+<extension point="dreisoft.tresos.launcher2.plugin.generator"
+             id="EPCGenerator"
+             name="EPC Generator">
+  <generator moduleId="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
+               id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
+               class="dreisoft.tresos.autosar2.generator.EPCFileGenerator">
+
+  <parameter name="variantAware" value="true"/>
+  <parameter name="cfgFilePath" value="output"/>
+  <parameter name="generateAllModules" value="false"/>
+  <parameter name="generateIntoOneFile" value="false"/>
+  <parameter name="contentType" value="asc:#M4_ASC_AUTOSAR_VERSION#"/>
+  </generator>
+</extension>
+#ENDIF
+
+ <extension point="dreisoft.tresos.generator.api.plugin.generator" id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_NGGeneratorId">
+          <generator moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+                     class="dreisoft.tresos.generator.ng.api.NGGenerator"
+                     id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_UniqueNGGeneratorId"
+                     modes="generate,generate_PC,generate_PB,verify"
+                     step="post">
+              <parameter name="buildfile" value="ant_generator.xml"/>
+           <parameter name="variantAware" value="true"/>
+          </generator>
+  </extension>
+
+#IF (#M4_SUPPORT_MULTI_INSTANCE#==1)
+<extension point="dreisoft.tresos.generator.api.plugin.generator" id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_NGGeneratorId">
+          <generator moduleId="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
+                     class="dreisoft.tresos.generator.ng.api.NGGenerator"
+                     id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_UniqueNGGeneratorId"
+                     modes="generate,generate_PC,generate_PB,verify"
+                     step="post">
+              <parameter name="buildfile" value="ant_generator.xml"/>
+           <parameter name="variantAware" value="true"/>
+          </generator>
+</extension>
+#ENDIF
+
+
+#IF (#M4_POSTBUILD_SETUP_SUPPORT#==1)
+<extension
+      point="dreisoft.tresos.autosar2.api.plugin.postbuildSetup"
+      id="autosar2.api.test.postbuildSetup.basic">
+    <configuration
+         activeLoadableRef="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#/EcucSelectedLoadableVariant/EcucSelectedLoadableRef"
+         activeSelectableRef="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#/EcucPostBuildVariants/EcucSelectedPostBuildVariantRef"
+         selectableRefs="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#/EcucPostBuildVariants/EcucPostBuildVariantRef">
+     </configuration>
+  </extension>
+#ENDIF
+
+  <extension point="dreisoft.tresos.launcher2.plugin.generator"
+              id="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#_GeneratorId"
+              name="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME# Generator">
+    <generator moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+               class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
+    <parameter name="variantAware" value="true"/>
+    <!-- swcd modes and template path parameters -->
+    <parameter name="mode_type" mode="generate_swcd" value="generate"></parameter>
+    <parameter name="mode_type" mode="verify_swcd" value="verify"></parameter>
+    <parameter name="templates" mode="generate_swcd,verify_swcd" value="generate_swcd"></parameter>
+
+      <!-- common template path parameters -->
+      <parameter name="templates" mode="generate,verify" value="generate,generate_PC,generate_PB"/>
+      <!-- custom generators -->
+      <parameter name="templates" mode="generate_PC" value="generate_PC"/>
+      <parameter name="templates" mode="generate_PB" value="generate_PB"/>
+      <!-- custom template paths -->
+      <parameter name="mode_type" mode="generate_PC" value="generate"/>
+      <parameter name="mode_type" mode="generate_PB" value="generate"/>
+
+    </generator>
+  </extension>
+
+#IF (#M4_SUPPORT_MULTI_INSTANCE#==1)
+<extension point="dreisoft.tresos.launcher2.plugin.generator"
+              id="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#_GeneratorId"
+              name="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME# Generator">
+    <generator moduleId="#M4_MODULE_NAME#_#M4_VENDOR_ID#_#M4_INSTANCE_ID#_#M4_HW_RELEASE_NAME#"
+               class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
+    <parameter name="variantAware" value="true"/>
+    <!-- swcd modes and template path parameters -->
+    <parameter name="mode_type" mode="generate_swcd" value="generate"></parameter>
+    <parameter name="mode_type" mode="verify_swcd" value="verify"></parameter>
+    <parameter name="templates" mode="generate_swcd,verify_swcd" value="generate_swcd"></parameter>
+
+      <!-- common template path parameters -->
+      <parameter name="templates" mode="generate,verify" value="generate,generate_PC,generate_PB"/>
+      <!-- custom generators -->
+      <parameter name="templates" mode="generate_PC" value="generate_PC"/>
+      <parameter name="templates" mode="generate_PB" value="generate_PB"/>
+      <!-- custom template paths -->
+      <parameter name="mode_type" mode="generate_PC" value="generate"/>
+      <parameter name="mode_type" mode="generate_PB" value="generate"/>
+
+    </generator>
+</extension>
+#ENDIF
+
+#IF (#M4_RESOURCE_PROPERTY_SUPPORT#==1)
+  <extension point="dreisoft.tresos.autosar2.api.plugin.ecuresource">
+    <ecuresource
+      target="#M4_TARGET_ARCHITECTURE#"
+      derivate="#M4_HW_SILICON_NAME#"
+      moduleId="#M4_MODULE_NAME#_#M4_HW_RELEASE_NAME#"
+      file="resource/#M4_RESOURCE_PACKAGE#.properties">
+      <parameter name="subderivative" value="#M4_RESOURCE_PACKAGE#"/>
+    </ecuresource>
+  </extension>
+
+  <extension point="dreisoft.tresos.autosar2.api.plugin.ecuresourcefinder">
+    <ecuresourcefinder>
+      <finder class="dreisoft.tresos.autosar2.api.ecuresource.DefaultEcuResourceFinder">
+        <parameter name="name" value="subderivative"/>
+        <parameter name="path" value="ASPath:/#M4_HW_RELEASE_NAME#/#M4_MODULE_NAME#/ResourceGeneralContainer/ResourcePackage"/>
+      </finder>
+    </ecuresourcefinder>
+  </extension>
+#ENDIF
+
+  <extension point="org.eclipse.help.toc">
+    <toc file="anchors.xml" primary="true"/>
+    <toc file="$nl$/#M4_MODULE_NAME#/toc.xml" primary="false"/>
+    <!-- toc file="$nl$/ReleaseNotes/toc.xml" primary="false"/ !-->
+  </extension>
+</plugin>
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<plugin>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.module"
+             id="EcuC_HuLa_ModuleId"
+             name="EcuC_HuLa Module">
+
+    <module id="EcuC_HuLa"
+            label="EcuC"
+            mandatory="false"
+            allowMultiple="false"
+            description="EcuC BSW module"
+            copyright="(c) Copyright 2023 XIAOHUA SEMICONDUCTOR CO., LTD. All rights reserved."
+            swVersionMajor="1"
+            swVersionMinor="0"
+            swVersionPatch="0"
+            swVersionSuffix=""
+            specVersionMajor=""
+            specVersionMinor=""
+            specVersionPatch=""
+            specVersionSuffix=""
+            relVersionPrefix="AUTOSAR"
+            relVersionMajor="4"
+            relVersionMinor="4"
+            relVersionPatch="0"
+            relVersionSuffix=""
+            categoryType="EcuC"
+            categoryLayer="MCAL"
+            categoryCategory="ECU Firmware"
+            categoryComponent="ECUC">
+      <ecuType target="CortexM4" derivate="HuLa"/>
+
+    </module>
+  </extension>
+
+    <extension point="dreisoft.tresos.launcher2.plugin.configuration"
+             id="EcuC_HuLa_ConfigId"
+             name="EcuC_HuLa Configuration">
+    <configuration moduleId="EcuC_HuLa">
+      <schema>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarSchemaManager"/>
+        <resource value="config/EcuC.xdm" type="xdm"/>
+      </schema>
+
+      <data>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarConfigManager"/>
+        <schemaNode path="ASPath:/HuLa/EcuC"/>
+      </data>
+
+      <editor id="EcuC_HuLa_EditorId"
+              label="Default"
+              tooltip="EcuC BSW module">
+        <class class="dreisoft.tresos.launcher2.editor.GenericConfigEditor">
+          <parameter name="schema" value="ASPath:/HuLa/EcuC"/>
+          <parameter name="title" value="EcuC"/>
+          <parameter name="noTabs" value="false"/>
+          <parameter name="noLinks" value="true"/>
+          <parameter name="groupLinks" value="false"/>
+          <parameter name="groupContainers" value="false"/>
+          <parameter name="groupTables" value="true"/>
+          <parameter name="optionalGeneralTab" value="true"/>
+        </class>
+      </editor>
+    </configuration>
+  </extension>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.generator"
+             id="EPCGenerator"
+             name="EPC Generator">
+  <generator moduleId="EcuC_HuLa"
+               id="EcuC_HuLa"
+               class="dreisoft.tresos.autosar2.generator.EPCFileGenerator">
+
+  <parameter name="variantAware" value="true"/>
+  <parameter name="cfgFilePath" value="output"/>
+  <parameter name="generateAllModules" value="false"/>
+  <parameter name="generateIntoOneFile" value="false"/>
+  <parameter name="contentType" value="asc:4.4.0"/>
+  </generator>
+ </extension>
+
+ <extension point="dreisoft.tresos.generator.api.plugin.generator" id="EcuC_HuLa_NGGeneratorId">
+          <generator moduleId="EcuC_HuLa"
+                     class="dreisoft.tresos.generator.ng.api.NGGenerator"
+                     id="EcuC_HuLa_UniqueNGGeneratorId"
+                     modes="generate,generate_PC,generate_PB,verify"
+                     step="post">
+              <parameter name="buildfile" value="ant_generator.xml"/>
+              <parameter name="variantAware" value="true"/>
+          </generator>
+  </extension>
+  
+<extension
+      point="dreisoft.tresos.autosar2.api.plugin.postbuildSetup"
+      id="autosar2.api.test.postbuildSetup.basic">
+    <configuration
+         activeLoadableRef="ASPath:/HuLa/EcuC/EcucSelectedLoadableVariant/EcucSelectedLoadableRef"
+         activeSelectableRef="ASPath:/HuLa/EcuC/EcucPostBuildVariants/EcucSelectedPostBuildVariantRef"
+         selectableRefs="ASPath:/HuLa/EcuC/EcucPostBuildVariants/EcucPostBuildVariantRef">
+     </configuration>
+  </extension>
+
+  <extension point="dreisoft.tresos.launcher2.plugin.generator"
+              id="EcuC_HuLa_GeneratorId"
+              name="EcuC_HuLa Generator">
+    <generator moduleId="EcuC_HuLa"
+               class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
+      <parameter name="variantAware" value="true"/>
+      <parameter name="templates" mode="generate,verify" value="generate,generate_PC"/>
+    </generator>
+  </extension>
+
+  <extension point="org.eclipse.help.toc">
+    <toc file="anchors.xml" primary="true"/>
+    <toc file="$nl$/EcuC/toc.xml" primary="false"/>
+  </extension>
+</plugin>
+
