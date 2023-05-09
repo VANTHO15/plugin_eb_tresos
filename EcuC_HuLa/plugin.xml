@@ -12,7 +12,7 @@
             mandatory="false"
             allowMultiple="false"
             description="EcuC BSW module"
-            copyright="(c) Copyright 2023 XIAOHUA SEMICONDUCTOR CO., LTD. All rights reserved."
+            copyright="(c) Copyright "
             swVersionMajor="1"
             swVersionMinor="0"
             swVersionPatch="0"
